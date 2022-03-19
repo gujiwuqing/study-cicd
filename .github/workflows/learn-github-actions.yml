@@ -1,18 +1,11 @@
-name: GitHub Actions Build
+name: Github Actions Demo
 on:
    push:
-       branches:
-          - main
+     branches:
+       - main
 jobs:
-  build-and-deploy:
+  Test :
     runs-on: ubuntu-latest
-    environment: production
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: main
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
+      - uses: actions/checkout@v1
+      - run: echo hello

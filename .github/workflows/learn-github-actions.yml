@@ -7,6 +7,11 @@ jobs:
   Test :
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - uses: JamesIves/github-pages-deploy-action@master
+        env:
+            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+            BRANCH: gh-pages
+            FOLDER: build
+            BUILD_SCRIPT: npm install && npm run build

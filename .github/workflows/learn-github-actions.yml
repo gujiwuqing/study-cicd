@@ -1,12 +1,18 @@
-name: learn-github-actions
-on: [push]
+name: GitHub Actions Build
+on:
+   push:
+       branches:
+          - main
 jobs:
-  check-bats-version:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    environment: production
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+          ref: main
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
